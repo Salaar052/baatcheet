@@ -1,3 +1,17 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: backend-secrets
+type: Opaque
+stringData:
+  MONGO_URI: "mongodb+srv://salaarasim345_db_user:rWnXRyIEaMHmS4Kb@cluster0.xdtckpg.mongodb.net/baatcheet?retryWrites=true&w=majority"
+  JWT_SECRET: "your_jwt_secret_key"
+  CLOUDINARY_CLOUD_NAME: "ddf85fmrf"
+  CLOUDINARY_API_KEY: "766957716777719"
+  CLOUDINARY_API_SECRET: "qcgX7PShSjwxpccnZKeRyN3OFBU"
+  ARCJET_API_KEY: "ajkey_01k53yh9xmeyfrv6gk84bxhxrj"
+  ARCJET_ENV: "development"
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -19,9 +33,42 @@ spec:
             - containerPort: 3000
           env:
             - name: MONGO_URI
-              value: mongodb://mongodb:27017/baatcheet
+              valueFrom:
+                secretKeyRef:
+                  name: backend-secrets
+                  key: MONGO_URI
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: backend-secrets
+                  key: JWT_SECRET
+            - name: CLOUDINARY_CLOUD_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: backend-secrets
+                  key: CLOUDINARY_CLOUD_NAME
+            - name: CLOUDINARY_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: backend-secrets
+                  key: CLOUDINARY_API_KEY
+            - name: CLOUDINARY_API_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: backend-secrets
+                  key: CLOUDINARY_API_SECRET
+            - name: ARCJET_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: backend-secrets
+                  key: ARCJET_API_KEY
+            - name: ARCJET_ENV
+              valueFrom:
+                secretKeyRef:
+                  name: backend-secrets
+                  key: ARCJET_ENV
             - name: Client_URL
-              value: http://frontend
+              value: "https://135.171.234.140"  # Your frontend external IP
 ---
 apiVersion: v1
 kind: Service
@@ -32,3 +79,5 @@ spec:
     app: backend
   ports:
     - port: 3000
+      targetPort: 3000
+  type: ClusterIP
