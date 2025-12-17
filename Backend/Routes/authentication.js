@@ -1,7 +1,7 @@
 const express = require('express');
 const { signupHandler,loginHandler,logoutHandler ,updateProfileImageHandler} = require('../Controllers/authentication');
 const {verifyJwt} = require('../middlewares/authentication');
-const {arcjetProtection} = require('../middlewares/arcjet');
+//const {arcjetProtection} = require('../middlewares/arcjet');
 
 const router = express.Router();
 
