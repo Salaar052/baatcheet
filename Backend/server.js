@@ -18,7 +18,7 @@ const PORT = 3000;
 app.use(express.json({limit: "10mb"}));
 app.use(express.urlencoded({ limit: "10mb",extended: true }));
 app.use(cors({
-  origin: [ENV.Client_URL, "http://localhost:4173"],
+  origin: [ENV.Client_URL, "http://localhost:4173","http://localhost:5173"],
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
