@@ -13,7 +13,7 @@ function ChatPage() {
 
   return (
     
-    <div className="relative w-full max-w-6xl h-[800px] flex rounded-xl overflow-hidden shadow-lg">
+    <div className="relative w-full max-w-6xl h-[calc(100vh-2rem)] flex rounded-xl overflow-hidden shadow-lg">
       {/* LEFT SIDE */}
       <div className="w-80 bg-slate-800/50 backdrop-blur-sm flex flex-col border-r border-slate-700/40">
         <ProfileHeader />

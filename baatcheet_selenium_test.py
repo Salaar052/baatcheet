@@ -28,10 +28,10 @@ wait = WebDriverWait(driver, 10)  # 10 second wait for elements
 
 # ---------------- Test Case 1: Login ----------------
 email_input = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "input[type='email']")))
-email_input.send_keys("salaar@gmail.com")
+email_input.send_keys("ahmad@gmail.com")
 
 password_input = driver.find_element(By.CSS_SELECTOR, "input[type='password']")
-password_input.send_keys("123456")
+password_input.send_keys("Salaar@12345")
 
 login_button = driver.find_element(By.CSS_SELECTOR, "button.auth-btn")
 login_button.click()
